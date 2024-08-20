@@ -74,6 +74,24 @@
         ctx.strokeText("Hola Mundo", 250, 50);
         ctx.fillText("Hola Mundo", 250, 50);
 
+        var grd = ctx.createLinearGradient(30, 200, 100, 153);
+        grd.addColorStop(0, "red");
+        grd.addColorStop(0.5, "purple");
+        grd.addColorStop(1, "blue");
+
+        ctx.fillStyle = grd;
+        ctx.fillRect(30, 200, 100, 150);
+
+
+        var grd2 =  ctx.createRadialGradient(300, 50, 5, 400, 100, 100);
+        grd2.addColorStop(0, "red");
+        grd2.addColorStop(0.5, "purple");
+        grd2.addColorStop(1, "blue");
+
+        ctx.fillStyle = grd2;
+        ctx.fillRect(300, 400, 100, 150);
+
+
 
 
 
