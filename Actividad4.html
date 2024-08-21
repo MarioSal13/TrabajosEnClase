@@ -13,6 +13,7 @@
 </head>
 <body>
     <canvas id="my_canvas" width="600" height="600"></canvas>
+    <img id="images" src="/images.jpg" alt="Descripción de la imagen" style="display:none;">
 
     <script type>
         const my_Canvas = document.getElementById("my_canvas");
@@ -90,11 +91,14 @@
 
         ctx.fillStyle = grd2;
         ctx.fillRect(300, 400, 120, 150);
-
-
-
-
+        
+        var img = document.getElementById("images");
+        img.onload = function() {
+            ctx.drawImage(img, 400, 220, 200, 150);
+        };
 
     </script>
+
+    
 </body>
 </html>
