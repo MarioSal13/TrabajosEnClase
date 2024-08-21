@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas{
+            background-color: gray;
+        }
+
+    </style>
+</head>
+<body>
+    <canvas id="my_canvas" width="600" height="600"></canvas>
+    <img id="images" src="/images.jpg" alt="Descripción de la imagen" style="display:none;">
+
+    <script type>
+        const my_Canvas = document.getElementById("my_canvas");
+        const ctx = my_Canvas.getContext("2d");
+        my_Canvas.addEventListener("click",function(e){
+            
+            ctx.beginPath();
+            ctx.arc(e.x, e.y, 50, 0, 2 * Math.PI);
+            ctx.fillStyle = "orange";
+            ctx.fill();
+            ctx.stroke()
+        })
+
+    </script>
+
+    
+</body>
+</html>
