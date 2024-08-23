@@ -63,19 +63,27 @@
        
         
         my_Canvas.addEventListener("mousemove",function(e){
-            
+            if(presion == true){
                 ctx.fillStyle = "black";
                 ctx.beginPath();
                 ctx.arc(e.x, e.y, 5, 0, 2 * Math.PI);
                 ctx.fill();
                 ctx.stroke()
-            
+            }
 
         })
         
        
+        my_Canvas.addEventListener("mousedown",function(e){
+            presion= true;
+        })
 
+        my_Canvas.addEventListener("mouseup",function(e){
+            presion = false;
+        })
+        
 
+    
 
     </script>
 
