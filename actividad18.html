@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas{
+            background-color: gray;
+        }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="my_canvas" width="600" height="600"></canvas>
+    <img id="images" src="/images.jpg" alt="Descripción de la imagen" style="display:none;">
+
+    <script type>
+        const my_Canvas = document.getElementById("my_canvas");
+        const ctx = my_Canvas.getContext("2d");
+        var color = "black";
+
+
+        document.addEventListener("keydown", function(e){
+            
+            color = getRandomColor();
+
+            let x = Math.random() * 580;
+            let y = Math.random() * 580;
+
+            ctx.fillStyle = color;
+            ctx.strokeRect(x, y, 100, 100);
+            ctx.fillRect(x, y, 100, 100);
+            ctx.font = "60px serif";
+            ctx.strokeText(e.key, x + 50, y + 50);
+
+        })
+
+        document.addEventListener("keypress", function(e){
+
+            
+        })
+
+        document.addEventListener("keyup", function(e){
+            
+        })
+
+        function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+        }
+
+
+    </script>
+    
+</body>
+</html>
