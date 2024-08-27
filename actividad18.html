@@ -20,21 +20,38 @@
         const my_Canvas = document.getElementById("my_canvas");
         const ctx = my_Canvas.getContext("2d");
         var color = "black";
+        var move = 10; 
+        var x = 200;
+        var y = 200;
 
+        ctx.strokeRect(x, y, 100, 100);
+        ctx.fillRect(x, y, 100, 100);
 
         document.addEventListener("keydown", function(e){
             
-            color = getRandomColor();
+            if(e.key=="w"){
+                console.log("arriba")
+                y -= move;
+            }else if(e.key =="a"){
+                console.log("izquierda")
+                x -= move;
+            }else if(e.key == "s"){
+                console.log("abajo")
+                y += move;
 
-            let x = Math.random() * 580;
-            let y = Math.random() * 580;
+            }else if(e.key == "d"){
+                console.log("derecha")
+                x+= move;
+
+            }
+            
+            color = getRandomColor();
 
             ctx.fillStyle = color;
             ctx.strokeRect(x, y, 100, 100);
             ctx.fillRect(x, y, 100, 100);
-            ctx.font = "60px serif";
-            ctx.strokeText(e.key, x + 50, y + 50);
-
+        
+        
         })
 
         document.addEventListener("keypress", function(e){
