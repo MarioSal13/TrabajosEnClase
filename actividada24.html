@@ -50,13 +50,24 @@
 
             if(direction=="up"){
                 y -= speed;
+                if(y+100 <= -10){
+                    y= 610;
+                }
             }else if(direction =="left"){
                 x -= speed;
+                if(x+100 <= -10){
+                    x= 610;
+                }
             }else if(direction == "down"){
                 y += speed;
+                if(y+100 >= 629){
+                    y= -10;
+                }
             }else if(direction == "rigth"){
                 x+= speed;
-
+                if(x+100 >= 629){
+                    x= -10;
+                }
             }
         }
 
