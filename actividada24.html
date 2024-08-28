@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas{
+            background-color: gray;
+        }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="my_canvas" width="600" height="600"></canvas>
+    <img id="images" src="/images.jpg" alt="Descripción de la imagen" style="display:none;">
+
+    <script type>
+        const my_Canvas = document.getElementById("my_canvas");
+        const ctx = my_Canvas.getContext("2d");
+        var color = "black";
+        var move = 10; 
+        var x = 200;
+        var y = 200;
+        var direction = "";
+        var speed=10;
+
+        ctx.strokeRect(x, y, 100, 100);
+        ctx.fillRect(x, y, 100, 100);
+
+        document.addEventListener("keydown", function(e){
+            
+            if(e.key=="w"){
+                direction = "up";
+
+            }else if(e.key =="a"){
+                direction = "left";
+            
+            }else if(e.key == "s"){
+                direction = "down";
+            
+            }else if(e.key == "d"){
+                direction = "rigth";
+            }
+        
+        })
+
+        function update(){
+
+            if(direction=="up"){
+                y -= speed;
+            }else if(direction =="left"){
+                x -= speed;
+            }else if(direction == "down"){
+                y += speed;
+            }else if(direction == "rigth"){
+                x+= speed;
+
+            }
+        }
+
+        function pintar(){
+            ctx.fillStyle = "gray";
+            ctx.strokeRect(0, 0, 600, 600);
+            ctx.fillRect(0, 0, 600, 600);
+
+            color = getRandomColor();
+
+            ctx.fillStyle = color;
+            ctx.strokeRect(x, y, 100, 100);
+            ctx.fillRect(x, y, 100, 100);
+
+            update()
+            requestAnimationFrame(pintar);
+        
+        }
+
+        requestAnimationFrame(pintar);
+
+
+        document.addEventListener("keypress", function(e){
+
+            
+        })
+
+        document.addEventListener("keyup", function(e){
+            
+        })
+
+        function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+        }
+
+        
+
+
+    </script>
+    
+</body>
+</html>
