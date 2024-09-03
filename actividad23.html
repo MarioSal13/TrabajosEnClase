@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            background-color: #b3eefe;
+        }
+
+    </style>
+</head>
+<body>
+    <canvas id="miCanvas" width="640" height="360"></canvas>
+    <img id="images" src="/mario.png" alt="Descripción de la imagen" style="display:none;">
+
+    <script>
+
+    const canvas = document.getElementById('miCanvas');
+    const ctx = canvas.getContext('2d');
+
+
+    //arbusto 
+
+    ctx.beginPath();
+    ctx.arc(40, 330, 22, 0, 2 * Math.PI);
+    ctx.fillStyle = '#2c761d';
+    ctx.fill();
+    ctx.stroke();
+    
+
+    ctx.beginPath();
+    ctx.arc(38, 330, 19, 0, 2 * Math.PI);
+    ctx.fillStyle = '#60d785';
+    ctx.fill();
+    
+
+    
+
+    //piso
+    ctx.beginPath();
+    ctx.rect(-2,330,700,10);
+    ctx.fillStyle = '#fc935c'
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.rect(-2,340,700,20);
+    ctx.fillStyle = '#e99b77'
+    ctx.fill();
+    ctx.stroke();
+
+
+
+    
+    //cubos 
+
+    ctx.beginPath();
+    ctx.rect(10,170,40,40);
+    ctx.fillStyle = '#fc935c'
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.rect(90,90,40,40);
+    ctx.fillStyle = '#fc935c'
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+
+    ctx.beginPath();
+    ctx.rect(130,90,40,40);
+    ctx.fillStyle = '#fc935c'
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.rect(580,130,40,40);
+    ctx.fillStyle = '#fc935c'
+    ctx.fill();
+    ctx.stroke();
+
+    //plataformas
+
+    
+    
+    ctx.beginPath();
+    ctx.rect(210,130,120,200);
+    ctx.fillStyle = '#84c0ff'
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.rect(150,215,120,115);
+    ctx.fillStyle = '#000'
+    ctx.fill();
+    
+    ctx.beginPath();
+    ctx.rect(130,210,120,120);
+    ctx.fillStyle = '#ffc3b8'
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.rect(540,210,120,120);
+    ctx.fillStyle = '#53d968'
+    ctx.fill();
+    ctx.stroke();
+
+    //detalles plataformas
+
+    //plataforma rosa
+
+    ctx.beginPath();
+    ctx.arc(140, 220, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = '#b5c1d1';
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(240, 220, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = '#b5c1d1';
+    ctx.fill();
+    ctx.stroke();
+
+
+    ctx.beginPath();
+    ctx.arc(140, 320, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = '#b5c1d1';
+    ctx.fill();
+    ctx.stroke();
+
+
+    ctx.beginPath();
+    ctx.arc(240, 320, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = '#b5c1d1';
+    ctx.fill();
+    ctx.stroke();
+
+
+    //plataforma azul
+
+    ctx.beginPath();
+    ctx.arc(220, 140, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = '#b5c1d1';
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(320, 140, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = '#b5c1d1';
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(320, 320, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = '#b5c1d1';
+    ctx.fill();
+    ctx.stroke();
+    
+    //plataforma verde
+
+    ctx.beginPath();
+    ctx.arc(550, 220, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = '#b5c1d1';
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(550, 320, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = '#b5c1d1';
+    ctx.fill();
+    ctx.stroke();
+
+    //tuberia
+
+   
+
+    ctx.beginPath();
+    ctx.rect(400,249,95,80);
+    ctx.fillStyle = '#1b8902'
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.rect(395,210,105,40);
+    ctx.fillStyle = '#1b8902'
+    ctx.fill();
+    ctx.stroke();
+
+   
+
+    //detalles tuberia
+
+    ctx.beginPath();
+    ctx.rect(405,210,2,39);
+    ctx.fillStyle = '#5ad471'
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.rect(407,250,2,79);
+    ctx.fillStyle = '#5ad471'
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.rect(410,210,5,39);
+    ctx.fillStyle = '#5ad471'
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.rect(412,250,5,79);
+    ctx.fillStyle = '#5ad471'
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.rect(422,210,2,39);
+    ctx.fillStyle = '#5ad471'
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.rect(424,250,2,79);
+    ctx.fillStyle = '#5ad471'
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.rect(462,210,5,39);
+    ctx.fillStyle = '#5ad471'
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.rect(460,250,5,79);
+    ctx.fillStyle = '#5ad471'
+    ctx.fill();
+
+    //sombras tuberia
+
+    ctx.beginPath();
+    ctx.rect(470,210,3,39);
+    ctx.fillStyle = '#080a07'
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.rect(468,250,3,79);
+    ctx.fillStyle = '#080a07'
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.rect(477,210,2,39);
+    ctx.fillStyle = '#080a07'
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.rect(475,250,2,79);
+    ctx.fillStyle = '#080a07'
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.rect(482,210,9,39);
+    ctx.fillStyle = '#080a07'
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.rect(480,250,9,79);
+    ctx.fillStyle = '#080a07'
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.rect(496,210,2,39);
+    ctx.fillStyle = '#080a07'
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.rect(493,250,2,79);
+    ctx.fillStyle = '#080a07'
+    ctx.fill();
+    
+    
+    //piraña
+    
+    ctx.beginPath();
+    ctx.rect(400,249,10,80);
+    ctx.fillStyle = '#1b8902'
+    ctx.fill();
+    ctx.stroke();
+    
+    //mario este lo hice con ctx.draw solo para que se viera mas chido XDXD no lo cuente 
+
+    var img = document.getElementById("images");
+    img.onload = function() {
+        ctx.drawImage(img, 290, 265, 80, 70);
+    };
+
+
+   
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>
