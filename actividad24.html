@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            background-color: #2000a0;
+        }
+
+    </style>
+</head>
+<body>
+    <canvas id="miCanvas" width="440" height="330"></canvas>
+    
+    <script>
+    
+        const canvas = document.getElementById('miCanvas');
+        const ctx = canvas.getContext('2d');
+
+        //suelo (todo el codigo se aqui XD)
+
+        // los cubos del suelo 💀
+        var x = 0;
+        var col = 0;
+
+        for (let index = 0; index < 22; index++) {
+            if(col==0){
+                ctx.beginPath();
+                ctx.rect(x,310,20,20);
+                ctx.fillStyle = '#602000'
+                ctx.fill();
+                col=1;
+            }else{
+                ctx.beginPath();
+                ctx.rect(x,310,20,20);
+                ctx.fillStyle = '#c06000'
+                ctx.fill();
+                col=0;
+            }
+
+            x+=20;
+            
+        }
+
+        x=0;
+        col=1;
+
+
+        for (let index = 0; index < 22; index++) {
+            if(col==0){
+                ctx.beginPath();
+                ctx.rect(x,290,20,20);
+                ctx.fillStyle = '#602000'
+                ctx.fill();
+                col=1;
+            }else{
+                ctx.beginPath();
+                ctx.rect(x,290,20,20);
+                ctx.fillStyle = '#c06000'
+                ctx.fill();
+                col=0;
+            }
+
+            x+=20;
+            
+        }
+
+
+        x=0;
+        col=0;
+
+        for (let index = 0; index < 22; index++) {
+            if(col==0){
+                ctx.beginPath();
+                ctx.rect(x,270,20,20);
+                ctx.fillStyle = '#602000'
+                ctx.fill();
+                col=1;
+
+            }else{
+                ctx.beginPath();
+                ctx.rect(x,270,20,20);
+                ctx.fillStyle = '#c06000'
+                ctx.fill();
+                col=0;
+            }
+
+            x+=20;
+            
+        }
+
+        x=0;
+        col=1;
+
+        for (let index = 0; index < 22; index++) {
+            if(col==0){
+                ctx.beginPath();
+                ctx.rect(x,250,20,20);
+                ctx.fillStyle = '#602000'
+                ctx.fill();
+                col=1;
+            }else{
+                ctx.beginPath();
+                ctx.rect(x,250,20,20);
+                ctx.fillStyle = '#c06000'
+                ctx.fill();
+                col=0;
+            }
+
+            x+=20;
+            
+        }
+
+        //terreno
+        ctx.beginPath();
+        ctx.rect(-2,230,700,10);
+        ctx.fillStyle = '#80e000'
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.rect(-2,240,700,10);
+        ctx.fillStyle = '#40a000'
+        ctx.fill();
+        
+        ctx.beginPath();
+        ctx.rect(-2,250,700,10);
+        ctx.fillStyle = '#006000'
+        ctx.fill();
+        
+        ctx.beginPath();
+        ctx.rect(-2,260,700,20);
+        ctx.fillStyle="rgba(0,0,0,.5)";
+        ctx.fill();
+
+        //anillos
+
+        ctx.beginPath();
+        ctx.arc(130,200,15,0, 2 * Math.PI);
+        ctx.strokeStyle = '#faf904';
+        ctx.lineWidth = 5;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(170,200,15,0, 2 * Math.PI);
+        ctx.strokeStyle = '#faf904';
+        ctx.lineWidth = 5;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(210,200,15,0, 2 * Math.PI);
+        ctx.strokeStyle = '#faf904';
+        ctx.lineWidth = 5;
+        ctx.stroke();
+
+        //palmera 💀
+        ctx.beginPath();
+        ctx.rect(270,130,5,100);
+        ctx.fillStyle='#804000';
+        ctx.fill();
+
+        // Dibuja las hojas de la palmera
+        ctx.fillStyle = '#80e000'; // Color verde para las hojas
+
+        // Hoja 1
+        ctx.beginPath();
+        ctx.moveTo(273, 135); // Punto de inicio
+        ctx.lineTo(230, 100);  // Punto final de la hoja
+        ctx.lineTo(240, 70);  // Punto final de la hoja
+        ctx.closePath();
+        ctx.fill();
+
+        // Hoja 2
+        ctx.beginPath();
+        ctx.moveTo(273, 135); // Punto de inicio
+        ctx.lineTo(260, 100);  // Punto final de la hoja
+        ctx.lineTo(290, 70);  // Punto final de la hoja
+        ctx.closePath();
+        ctx.fill();
+
+        // Hoja 3
+        ctx.beginPath();
+        ctx.moveTo(273, 135); // Punto de inicio
+        ctx.lineTo(320, 80);  // Punto final de la hoja
+        ctx.lineTo(320, 130);  // Punto final de la hoja
+        ctx.closePath();
+        ctx.fill();
+
+         // Hoja 1
+         ctx.beginPath();
+        ctx.moveTo(273, 135); // Punto de inicio
+        ctx.lineTo(250, 130);  // Punto final de la hoja
+        ctx.lineTo(220, 170);  // Punto final de la hoja
+        ctx.closePath();
+        ctx.fill();
+
+        //flor
+        ctx.beginPath();
+        ctx.rect(360,190,5,40);
+        ctx.fillStyle='#40a000';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(362,192,20,0, 2 * Math.PI);
+        ctx.fillStyle = '#e0e000';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(362,192,12,0, 2 * Math.PI);
+        ctx.fillStyle = '#406040';
+        ctx.fill();
+
+
+
+    </script>
+    
+</body>
+</html>
