@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recrear Imagen</title>
+    <style>
+        canvas {
+            background-color: #83b6df;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="miCanvas" width="500" height="500"></canvas>
+    <script>
+        const canvas = document.getElementById('miCanvas');
+        const ctx = canvas.getContext('2d');
+
+        //piso
+        ctx.beginPath();
+        ctx.rect(0, 430, 600, 300);
+        ctx.fillStyle = '#89dc32';
+        ctx.fill();
+        ctx.stroke();
+
+        // casa
+        ctx.beginPath();
+        ctx.rect(50, 215, 200, 220);
+        ctx.fillStyle = '#f4e14c';
+        ctx.fill();
+        ctx.stroke();
+
+        //puerta
+        ctx.beginPath();
+        ctx.rect(150, 355, 40, 80);
+        ctx.fillStyle = '#f90013';
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.rect(190, 355, 40, 80);
+        ctx.fillStyle = '#f90013';
+        ctx.fill();
+        ctx.stroke();
+
+        //picaporte
+        ctx.beginPath();
+        ctx.arc(200, 390, 2, 0, 2 * Math.PI);
+        ctx.fillStyle = '#000';
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(180, 390, 2, 0, 2 * Math.PI);
+        ctx.fillStyle = '#000';
+        ctx.fill();
+        ctx.stroke();
+
+        //techo
+        ctx.beginPath();
+        ctx.moveTo(250, 217);
+        ctx.lineTo(150, 100);
+        ctx.lineTo(50, 217);
+        ctx.closePath();
+        ctx.fillStyle = '#622016';
+        ctx.fill()
+        ctx.stroke();
+
+        //ventanas
+        ctx.beginPath();
+        ctx.rect(80, 250, 30, 30);
+        ctx.fillStyle = '#f4e14c';
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.rect(80, 280, 30, 30);
+        ctx.fillStyle = '#f4e14c';
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.rect(110, 250, 30, 30);
+        ctx.fillStyle = '#f4e14c';
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.rect(110, 280, 30, 30);
+        ctx.fillStyle = '#f4e14c';
+        ctx.stroke();
+
+
+
+
+        //nube
+        ctx.beginPath();
+        ctx.arc(150, 50, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(170, 50, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(200, 50, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(170, 30, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(240, 50, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(220, 35, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        //2
+
+        ctx.beginPath();
+        ctx.arc(360, 50, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(370, 50, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(400, 50, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(470, 30, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(440, 50, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(420, 35, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        //arbol
+
+        ctx.beginPath();
+        ctx.rect(450, 240, 200, 220);
+        ctx.fillStyle = '#664329';
+        ctx.fill();
+        ctx.stroke()
+
+        ctx.beginPath();
+        ctx.arc(500, 205, 150, 0, 2 * Math.PI);
+        ctx.fillStyle = '#3b5421';
+        ctx.fill();
+
+
+        ctx.beginPath();
+        ctx.arc(450, 250, 10, 0, 2 * Math.PI);
+        ctx.fillStyle = '#eb3223';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(410, 200, 10, 0, 2 * Math.PI);
+        ctx.fillStyle = '#eb3223';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(470, 160, 10, 0, 2 * Math.PI);
+        ctx.fillStyle = '#eb3223';
+        ctx.fill();
+
+
+       
+
+
+
+
+    </script>
+</body>
+</html>
