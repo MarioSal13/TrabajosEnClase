@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas{
+            background-color: gray;
+        }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="my_canvas" width="600" height="600"></canvas>
+    <img id="images" src="/images.jpg" alt="Descripción de la imagen" style="display:none;">
+
+    <script type>
+        const my_Canvas = document.getElementById("my_canvas");
+        const ctx = my_Canvas.getContext("2d");
+        var color = "black";
+        var direction = "";
+        var obstaculos = [];
+        var pausa = false;
+        var score = 0;
+        
+
+        class rectacngulo{
+            constructor(x,y,w,h,c,s){
+                this.x = x;
+                this.y = y;
+                this.w = w;
+                this.h = h;
+                this.c = c;
+                this.s = s;
+            }
+
+            colicion (otro) {
+                if( this.x < otro.x + otro.w &&
+                    this.x + this.w > otro.x &&
+                    this.y < otro.y + otro.h &&
+                    this.y + this.h > otro.y)
+                { 
+                    return true;
+                    }
+                return false;
+                
+            };
+        }
+
+
+
+
+
+
+
+        var player = new rectacngulo (200,200,100,100,getRandomColor(),4);
+        var target = new rectacngulo (159,299,20,20,getRandomColor(),10);
+        obstaculos.push(new rectacngulo (159,299,200,40,getRandomColor(),10));
+        obstaculos.push(new rectacngulo (70,99,190,40,getRandomColor(),10));
+
+        
+        console.log(player.x);
+        document.addEventListener("keydown", function(e){
+
+            if(e.key=="w"){
+                direction = "up";
+
+            }else if(e.key =="a"){
+                direction = "left";
+            
+            }else if(e.key == "s"){
+                direction = "down";
+            
+            }else if(e.key == "d"){
+                direction = "rigth";
+            }else if(e.code == "Space"){
+                pausa = true;
+            }
+
+        
+        })
+
+        function update(){
+
+            if(pausa==false){
+                if(direction=="up"){
+                player.y -= player.s;
+                if(player.y+100 <= -10){
+                    player.y= 610;
+                }
+                
+                }else if(direction =="left"){
+                    player.x -= player.s;
+                    if(player.x+100 <= -10){
+                        player.x= 610;
+                    }
+                        
+                }else if(direction == "down"){
+                    player.y += player.s;
+                    if(player.y+100 >= 629){
+                        player.y= -10;
+                    }
+                    
+                }else if(direction == "rigth"){
+                    player.x+= player.s;
+                    if(player.x+100 >= 629){
+                        player.x= -10;
+                    }
+                    
+                }
+            }
+
+            
+            if(player.colicion(target)){
+                target.x = Math.floor(Math.random() * 550);
+                target.y = Math.floor(Math.random() * 550);
+                score+=20;
+            }
+
+
+            for (let index = 0; index < obstaculos.length; index++) {
+                if (player.colicion(obstaculos[index])) {
+
+                    if(direction=="up"){
+                    player.y += player.s;
+
+                    }else if(direction =="left"){
+                        player.x += player.s;
+  
+                    }else if(direction == "down"){
+                        player.y -= player.s;
+
+                    }else if(direction == "rigth"){
+                        player.x -= player.s;
+                    
+                    }
+                
+                }
+
+            }
+
+            for (let index = 0; index < obstaculos.length; index++) {
+                if(target.colicion(obstaculos[index])){
+                    target.x = Math.floor(Math.random() * 550);
+                    target.y = Math.floor(Math.random() * 550);
+                }
+
+            }
+            
+               
+    }
+        
+
+        function pintar(){
+            
+
+            ctx.fillStyle = "gray";
+            ctx.strokeRect(0, 0, 600, 600);
+            ctx.fillRect(0, 0, 600, 600);
+
+            //player
+            ctx.fillStyle = player.c;
+            ctx.strokeRect(player.x, player.y, player.w, player.h);
+            ctx.fillRect(player.x, player.y, player.w, player.h);
+
+            //target
+            ctx.fillStyle = target.c;
+            ctx.strokeRect(target.x, target.y, target.w, target.h);
+            ctx.fillRect(target.x, target.y, target.w, target.h);
+            
+            //obstaculos
+
+            for (let index = 0; index < obstaculos.length; index++) {
+                ctx.fillStyle = obstaculos[index].c;
+                ctx.strokeRect(obstaculos[index].x, obstaculos[index].y, obstaculos[index].w, obstaculos[index].h);
+                ctx.fillRect(obstaculos[index].x, obstaculos[index].y, obstaculos[index].w, obstaculos[index].h);
+            }
+            
+            /*
+            array.forEach(function(obstaculos,i,indice){
+                ctx.fillStyle = obstaculos.c;
+                ctx.strokeRect(obstaculos.x, obstaculos.y, obstaculos.w, obstaculos.h);
+                ctx.fillRect(obstaculos.x, obstaculos.y, obstaculos.w, obstaculos.h);
+            });
+            */
+
+            ctx.font = "30px serif";
+            ctx.fillStyle = "black";
+            ctx.fillText("Score:" + score, 400, 50);
+
+            if(pausa==true){
+                ctx.fillStyle = "rgba(129,70,10,.6)";
+                ctx.strokeRect(0, 0, 600, 600);
+                ctx.fillRect(0, 0, 600, 600);
+            } 
+
+
+            update()
+            requestAnimationFrame(pintar);
+        
+        }
+
+        requestAnimationFrame(pintar);
+
+        function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+        }
+
+        
+
+
+    </script>
+    
+</body>
+</html>
