@@ -21,6 +21,7 @@
         const ctx = my_Canvas.getContext("2d");
         var color = "black";
         var direction = "";
+        var obstaculos = [];
         
 
         class rectacngulo{
@@ -34,24 +35,30 @@
             }
 
             colicion (otro) {
-                if(this.x < otro.x + otro.w
-                    &&  this.x + this.w > otro.x 
-                    &&  this.y < otro.y + otro.h 
-                    &&  this.y + this.h > otro.y)
+                if( this.x < otro.x + otro.w &&
+                    this.x + this.w > otro.x &&
+                    this.y < otro.y + otro.h &&
+                    this.y + this.h > otro.y)
                 { 
                     return true;
                     }
-
                 return false;
                 
             };
         }
 
-        var player = new rectacngulo (200,200,100,100,getRandomColor(),10);
+
+
+
+
+
+
+        var player = new rectacngulo (200,200,100,100,getRandomColor(),4);
         var target = new rectacngulo (159,299,20,20,getRandomColor(),10);
-        var obstaculo = new rectacngulo (159,299,400,40,getRandomColor(),10);
+        obstaculos.push(new rectacngulo (159,299,200,40,getRandomColor(),10));
+        obstaculos.push(new rectacngulo (70,99,190,40,getRandomColor(),10));
 
-
+        
         console.log(player.x);
         document.addEventListener("keydown", function(e){
 
@@ -103,35 +110,44 @@
                 target.y = Math.floor(Math.random() * 550);
             }
 
-            if (player.colicion(obstaculo)) {
-                if(direction=="up"){
-                player.y += player.s;
 
-                }else if(direction =="left"){
-                    player.x += player.s;
+            for (let index = 0; index < obstaculos.length; index++) {
+                if (player.colicion(obstaculos[index])) {
 
-                        
-                }else if(direction == "down"){
-                    player.y -= player.s;
+                    if(direction=="up"){
+                    player.y += player.s;
 
-                }else if(direction == "rigth"){
-                    player.x-= player.s;
+                    }else if(direction =="left"){
+                        player.x += player.s;
+  
+                    }else if(direction == "down"){
+                        player.y -= player.s;
+
+                    }else if(direction == "rigth"){
+                        player.x -= player.s;
+                    
+                    }
                 
+                }
+
+            }
+
+            for (let index = 0; index < obstaculos.length; index++) {
+                if(target.colicion(obstaculos[index])){
+                    target.x = Math.floor(Math.random() * 550);
+                    target.y = Math.floor(Math.random() * 550);
+                }
+
             }
             
-            if(target.colicion(obstaculo)){
-                target.x = Math.floor(Math.random() * 550);
-                target.y = Math.floor(Math.random() * 550);
-            }
-                
-            }
-        }
+               
+    }
+        
 
         function pintar(){
             ctx.fillStyle = "gray";
             ctx.strokeRect(0, 0, 600, 600);
             ctx.fillRect(0, 0, 600, 600);
-
 
             //player
             ctx.fillStyle = player.c;
@@ -143,11 +159,21 @@
             ctx.strokeRect(target.x, target.y, target.w, target.h);
             ctx.fillRect(target.x, target.y, target.w, target.h);
             
-            //obstaculo
-            ctx.fillStyle = obstaculo.c;
-            ctx.strokeRect(obstaculo.x, obstaculo.y, obstaculo.w, obstaculo.h);
-            ctx.fillRect(obstaculo.x, obstaculo.y, obstaculo.w, obstaculo.h);
+            //obstaculos
 
+            for (let index = 0; index < obstaculos.length; index++) {
+                ctx.fillStyle = obstaculos[index].c;
+                ctx.strokeRect(obstaculos[index].x, obstaculos[index].y, obstaculos[index].w, obstaculos[index].h);
+                ctx.fillRect(obstaculos[index].x, obstaculos[index].y, obstaculos[index].w, obstaculos[index].h);
+            }
+            
+            /*
+            array.forEach(function(obstaculos,i,indice){
+                ctx.fillStyle = obstaculos.c;
+                ctx.strokeRect(obstaculos.x, obstaculos.y, obstaculos.w, obstaculos.h);
+                ctx.fillRect(obstaculos.x, obstaculos.y, obstaculos.w, obstaculos.h);
+            });
+            */
 
             ctx.font = "30px serif";
             ctx.fillStyle = "black";
@@ -160,16 +186,6 @@
         }
 
         requestAnimationFrame(pintar);
-
-
-        document.addEventListener("keypress", function(e){
-
-            
-        })
-
-        document.addEventListener("keyup", function(e){
-            
-        })
 
         function getRandomColor() {
         var letters = '0123456789ABCDEF';
