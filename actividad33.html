@@ -49,15 +49,9 @@
             };
         }
 
-
-
-
-
-
-
         var player = new rectacngulo (200,200,100,100,getRandomColor(),4);
         var target = new rectacngulo (159,299,20,20,getRandomColor(),10);
-        obstaculos.push(new rectacngulo (159,299,200,40,getRandomColor(),10));
+        obstaculos.push(new rectacngulo (159,400,200,40,getRandomColor(),10));
         obstaculos.push(new rectacngulo (70,99,190,40,getRandomColor(),10));
 
         
@@ -74,9 +68,16 @@
                 direction = "down";
             
             }else if(e.key == "d"){
-                direction = "rigth";
+                direction = "right";
             }else if(e.code == "Space"){
-                pausa = true;
+
+                if(pausa== false){
+                    pausa = true;
+                }else{
+                    pausa = false;
+                }
+                
+                
             }
 
         
@@ -85,6 +86,7 @@
         function update(){
 
             if(pausa==false){
+
                 if(direction=="up"){
                 player.y -= player.s;
                 if(player.y+100 <= -10){
@@ -103,7 +105,7 @@
                         player.y= -10;
                     }
                     
-                }else if(direction == "rigth"){
+                }else if(direction == "right"){
                     player.x+= player.s;
                     if(player.x+100 >= 629){
                         player.x= -10;
@@ -132,7 +134,7 @@
                     }else if(direction == "down"){
                         player.y -= player.s;
 
-                    }else if(direction == "rigth"){
+                    }else if(direction == "right"){
                         player.x -= player.s;
                     
                     }
@@ -194,6 +196,9 @@
                 ctx.fillStyle = "rgba(129,70,10,.6)";
                 ctx.strokeRect(0, 0, 600, 600);
                 ctx.fillRect(0, 0, 600, 600);
+                ctx.font = "60px serif";
+                ctx.fillStyle = "black";
+                ctx.fillText("PAUSA", 200, 300);
             } 
 
 
