@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="my_canvas" width="600" height="600"></canvas>
+    <img id="linkQuietoFrente" src="\assets\quieto de frente.png" alt="link quieto" style="display:none;">
+    <img id="rupia" src="\assets\rupia.png" alt="link quieto" style="display:none;">
+    <audio id="backgroundMusic" src="\assets\overWorld.mp3"></audio>
+    <audio id="ruiaSong" src="\assets\getRupi.mp3"></audio>
+
+
+    <script>
+        const my_Canvas = document.getElementById("my_canvas");
+        const ctx = my_Canvas.getContext("2d");
+        var color = "black";
+        var direction = "";
+        var obstaculos = [];
+        var pausa = false;
+        var score = 0;
+        var tomada = false;
+
+        const music = document.getElementById('backgroundMusic');
+        const rupiSong = document.getElementById('ruiaSong');
+        var img = document.getElementById("linkQuietoFrente");
+        var rupi = document.getElementById("rupia");
+        
+        
+        class rectacngulo {
+            constructor(x, y, w, h, c, s) {
+                this.x = x;
+                this.y = y;
+                this.w = w;
+                this.h = h;
+                this.c = c;
+                this.s = s;
+            }
+
+            colicion(otro) {
+                if (this.x < otro.x + otro.w &&
+                    this.x + this.w > otro.x &&
+                    this.y < otro.y + otro.h &&
+                    this.y + this.h > otro.y) {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        var player = new rectacngulo(200, 200, 50, 60, getRandomColor(), 1);
+        var target = new rectacngulo(159, 299, 60, 60, getRandomColor(), 10);
+        obstaculos.push(new rectacngulo(159, 400, 200, 40, getRandomColor(), 10));
+        obstaculos.push(new rectacngulo(70, 99, 190, 40, getRandomColor(), 10));
+
+        console.log(player.x);
+
+        document.addEventListener("keydown", function(e) {
+            if (e.key == "w") {
+                direction = "up";
+            } else if (e.key == "a") {
+                direction = "left";
+            } else if (e.key == "s") {
+                direction = "down";
+            } else if (e.key == "d") {
+                direction = "right";
+            } else if (e.code == "Space") {
+                pausa = !pausa;
+            }
+        });
+
+        function update() {
+            if (!pausa) {
+                if (direction == "up") {
+                    player.y -= player.s;
+                    if (player.y + player.h < 0) {
+                        player.y = my_Canvas.height;
+                    }
+                } else if (direction == "left") {
+                    player.x -= player.s;
+                    if (player.x + player.w < 0) {
+                        player.x = my_Canvas.width;
+                    }
+                } else if (direction == "down") {
+                    player.y += player.s;
+                    if (player.y > my_Canvas.height) {
+                        player.y = -player.h;
+                    }
+                } else if (direction == "right") {
+                    player.x += player.s;
+                    if (player.x > my_Canvas.width) {
+                        player.x = -player.w;
+                    }
+                }
+            }
+
+            if (player.colicion(target)) {
+                target.x = Math.floor(Math.random() * (my_Canvas.width - target.w));
+                target.y = Math.floor(Math.random() * (my_Canvas.height - target.h));
+                score += 20;
+            }
+
+            for (let index = 0; index < obstaculos.length; index++) {
+                if (player.colicion(obstaculos[index])) {
+                    if (direction == "up") {
+                        player.y += player.s;
+                    } else if (direction == "left") {
+                        player.x += player.s;
+                    } else if (direction == "down") {
+                        player.y -= player.s;
+                    } else if (direction == "right") {
+                        player.x -= player.s;
+                    }
+                }
+            }
+
+            for (let index = 0; index < obstaculos.length; index++) {
+                if (target.colicion(obstaculos[index])) {
+                    target.x = Math.floor(Math.random() * (my_Canvas.width - target.w));
+                    target.y = Math.floor(Math.random() * (my_Canvas.height - target.h));
+                    
+                    tomada=true;
+                }
+            }
+        }
+
+        
+        img.onload = function() {
+            requestAnimationFrame(pintar);
+        };
+
+        rupi.onload = function() {
+            requestAnimationFrame(pintar);
+        };
+
+
+        function pintar() {
+
+            if(pausa==false){
+                BGmusicPlay();
+            }
+            if(tomada==true){
+                rupiaPlay();
+                tomada=false;
+            }
+
+            ctx.clearRect(0, 0, my_Canvas.width, my_Canvas.height);
+            //player
+            ctx.drawImage(img, player.x, player.y, player.w, player.h);
+
+            //target
+            ctx.drawImage(rupi, target.x, target.y, target.w, target.h);
+
+            //obstaculos
+            for (let index = 0; index < obstaculos.length; index++) {
+                ctx.fillStyle = obstaculos[index].c;
+                ctx.strokeRect(obstaculos[index].x, obstaculos[index].y, obstaculos[index].w, obstaculos[index].h);
+                ctx.fillRect(obstaculos[index].x, obstaculos[index].y, obstaculos[index].w, obstaculos[index].h);
+            }
+
+            ctx.drawImage(rupi, 405, 19, 50, 50);
+            ctx.font = "30px serif";
+            ctx.fillStyle = "black";
+            ctx.fillText(":" + score, 450, 50);
+
+            if (pausa) {
+                ctx.fillStyle = "rgba(129,70,10,.6)";
+                ctx.strokeRect(0, 0, my_Canvas.width, my_Canvas.height);
+                ctx.fillRect(0, 0, my_Canvas.width, my_Canvas.height);
+                ctx.font = "60px serif";
+                ctx.fillStyle = "black";
+                ctx.fillText("PAUSA", 200, 300);
+                BGmusicStop();
+            }
+
+            update();
+            requestAnimationFrame(pintar);
+        }
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function BGmusicPlay(){
+            music.play();
+        }
+
+        function BGmusicStop(){
+            music.pause();
+        }
+
+        function rupiaPlay(){
+            rupiSong.play();
+        }
+
+
+    </script>
+    
+</body>
+</html>
